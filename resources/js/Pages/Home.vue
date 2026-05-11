@@ -95,7 +95,7 @@
             <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
             <h3>Events</h3>
             <p>Discover upcoming events, summer courses, and academic gatherings at In-Tech University.</p>
-            <router-link to="/events" class="service-btn-readonly">View Events →</router-link>
+          <Link href="/events" class="service-btn-readonly">View Events →</Link>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -103,7 +103,7 @@
             <div class="service-icon"><i class="fas fa-book"></i></div>
             <h3>Library</h3>
             <p>Access our digital library, books, journals, and research materials online.</p>
-            <a href="#" class="service-btn-readonly">Coming Soon →</a>
+            <Link href="/library" class="service-btn-readonly">View Library →</Link>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -111,7 +111,7 @@
             <div class="service-icon"><i class="fas fa-building"></i></div>
             <h3>Facilities</h3>
             <p>Explore our campus facilities, labs, classrooms, and amenities.</p>
-            <a href="#" class="service-btn-readonly">Coming Soon →</a>
+          <Link href="/facilities" class="service-btn-readonly">View Facilities →</Link>
           </div>
         </div>
       </div>
@@ -120,8 +120,12 @@
 </template>
 
 <script>
+import { Link } from '@inertiajs/vue3';
 export default {
   name: 'Home',
+  components: {
+    Link
+  },
   data() {
     return {
       currentSlide: 0,

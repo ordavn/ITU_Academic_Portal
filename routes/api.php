@@ -10,4 +10,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('facilities', FacilityController::class);
+Route::apiResource('books', BookController::class);
 Route::apiResource('events', EventController::class);
