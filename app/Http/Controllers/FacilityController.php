@@ -96,7 +96,15 @@ class FacilityController extends Controller
     public function update(Request $request, $id)
     {
         $facility = Facility::findOrFail($id);
-    'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+
+        $validatedData = $request->validate([
+            'name'              => 'sometimes|required|string|max:255',
+            'building'          => 'sometimes|required|string|max:255',
+            'description'       => 'nullable|string',
+            'location'          => 'sometimes|required|string|max:255',
+            'capacity'          => 'nullable|integer',
+            'operational_hours' => 'nullable|string|max:255',
+            'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Handle image upload
@@ -110,24 +118,10 @@ class FacilityController extends Controller
             $imagePath = $image->store('facilities', 'public');
             $validatedData['image_path'] = $imagePath;
         }
-        $validatedData = $request->validate([
-            'name'              => 'sometimes|required|string|max:255',
-            'building'          => 'sometimes|required|string|max:255',
-            'description'       => 'nullable|string',
-            'location'          => 'sometimes|required|string|max:255',
-            'capacity'          => 'nullable|integer',
-            'operational_hours' => 'nullable|string|max:255',
-        ]);
 
         $facility->update($validatedData);
 
         return response()->json([
-        
-        // Delete image if exists
-        if ($facility->image_path && Storage::disk('public')->exists($facility->image_path)) {
-            Storage::disk('public')->delete($facility->image_path);
-        }
-        
             'message' => 'Facility updated successfully!',
             'data'    => $facility
         ], 200);
