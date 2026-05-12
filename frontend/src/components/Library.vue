@@ -5,17 +5,19 @@
       <div class="hero-content">
         <h1>Library</h1>
         <div class="hero-breadcrumb">
-          <router-link to="/" class="home-link">Home</router-link> - <span>Library</span>
+          <router-link to="/" class="home-link">Home</router-link> <span>-</span> <span>Library</span>
         </div>
       </div>
     </div>
 
     <div class="container library-content">
-      <div class="row">
+      
+      <h2 class="section-title">Books List</h2>
+
+      <div v-if="books.length > 0" class="row">
         <div v-for="book in books" :key="book.id" class="col-lg-4 col-md-6 book-col">
           <div class="book-card">
             <img v-if="book.image" :src="`http://localhost:8000/storage/${book.image}`" alt="Book Cover" class="book-cover">
-            
             <div class="book-info">
               <h3 class="book-title">{{ book.title }}</h3>
               <p class="book-author">{{ book.author }}</p>
@@ -25,9 +27,10 @@
         </div>
       </div>
       
-      <div v-if="books.length === 0" class="no-books">
-        <p>No books available in the library at the moment.</p>
+      <div v-else class="empty-state">
+        <p>No books found.</p>
       </div>
+
     </div>
   </div>
 </template>
@@ -58,22 +61,21 @@ export default {
 ======================== */
 .library-hero {
   position: relative;
-  background-image: url('/images/library-images.jpg'); 
+  background-image: url('/images/library-images.jpg'); /* Your image path */
   background-size: cover;
   background-position: center;
-  padding: 60px 0;
+  padding: 60px 0; 
   text-align: center;
   margin-bottom: 50px;
 }
 
-/* Dark overlay to make the white text readable */
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 33, 71, 0.6); /* Matches your IN-TECH dark blue */
+  background: rgba(0, 33, 71, 0.7);
 }
 
 .hero-content {
@@ -83,9 +85,9 @@ export default {
 
 .hero-content h1 {
   color: #ffffff;
-  font-size: 48px;
+  font-size: 42px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
@@ -93,14 +95,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px; /* Adds nice spacing between Home - Library */
+  gap: 8px; 
   color: #ffffff;
   font-size: 16px;
   font-weight: 500;
 }
 
 .home-link {
-  color: #f39c12; /* Your IN-TECH Orange highlight */
+  color: #f39c12;
   text-decoration: none;
   transition: 0.3s;
 }
@@ -110,10 +112,28 @@ export default {
 }
 
 /* ========================
-   Library Grid Styles 
+   Library Content Styles 
 ======================== */
 .library-content {
-  padding-bottom: 60px;
+  padding-bottom: 80px;
+}
+
+/* Matches the "Events List" heading */
+.section-title {
+  color: #002147;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+/* Matches the "No events found." text */
+.empty-state {
+  text-align: center;
+  padding: 60px 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .book-col {
@@ -130,7 +150,7 @@ export default {
 }
 
 .book-card:hover {
-  transform: translateY(-5px); /* Creates a cool floating effect on hover */
+  transform: translateY(-5px); 
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
@@ -138,7 +158,7 @@ export default {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  border-bottom: 3px solid #f39c12; /* Small orange accent line under the image */
+  border-bottom: 3px solid #f39c12; 
 }
 
 .book-info {
@@ -163,13 +183,5 @@ export default {
   color: #666;
   font-size: 14px;
   line-height: 1.6;
-}
-
-.no-books {
-  text-align: center;
-  padding: 40px;
-  color: #666;
-  font-style: italic;
-  width: 100%;
 }
 </style>
