@@ -103,7 +103,7 @@
             <div class="service-icon"><i class="fas fa-book"></i></div>
             <h3>Library</h3>
             <p>Access our digital library, books, journals, and research materials online.</p>
-            <a href="#" class="service-btn-readonly">Coming Soon →</a>
+            <router-link to="/library" class="service-btn-readonly">View Library →</router-link>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">

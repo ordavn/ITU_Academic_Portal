@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('title');
+            $table->string('author');
+            $table->text('description');
+            $table->string('image')->nullable(); // nullable just in case a book has no cover
+            $table->timestamps(); // This automatically creates created_at and updated_at
         });
     }
 

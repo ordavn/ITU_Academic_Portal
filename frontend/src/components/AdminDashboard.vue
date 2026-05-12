@@ -40,10 +40,10 @@
               <i class="fas fa-book"></i>
             </div>
             <h3>Library Management</h3>
-            <p>Manage books, journals, and library resources. (Coming Soon)</p>
-            <a href="#" class="admin-btn-disabled">
-              <i class="fas fa-clock"></i> Coming Soon
-            </a>
+            <p>Manage books, journals, and library resources.</p>
+            <router-link to="/admin/library" class="admin-btn">
+              <i class="fas fa-arrow-right"></i> Manage Books
+            </router-link>
           </div>
         </div>
 
@@ -55,9 +55,9 @@
             </div>
             <h3>Facilities Management</h3>
             <p>Manage campus facilities, labs, and classrooms. (Coming Soon)</p>
-            <a href="#" class="admin-btn-disabled">
+            <router-link to="/admin/facilities" class="admin-btn-disabled">
               <i class="fas fa-clock"></i> Coming Soon
-            </a>
+            </router-link>
           </div>
         </div>
       </div>

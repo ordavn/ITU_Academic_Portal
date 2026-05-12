@@ -15,7 +15,7 @@
         
         <div class="header-mid-area">
           <div class="container">
-            <div class="row">
+            <div class="row align-items-center"> 
               <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="logo-area">
                   <div style="display: flex; align-items: center; gap: 10px;">
@@ -28,8 +28,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-8 col-md-8 col-sm-12">
-
+              <div class="col-lg-8 col-md-8 col-sm-12 login-container">
+                 <router-link to="/admin" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> ADMIN LOGIN
+                 </router-link>
               </div>
             </div>
           </div>
@@ -43,20 +45,9 @@
                   <ul>
                     <li><router-link to="/">HOME</router-link></li>
                     <li><router-link to="/events">EVENTS</router-link></li>
-                    <li><a href="#">LIBRARY</a></li>
+                    <li><router-link to="/library">LIBRARY</router-link></li>
                     <li><a href="#">FACILITIES</a></li>
-                    <li><div class="login-bar">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-right">
-                <router-link to="/admin" class="btn-login">
-                <i class="fas fa-sign-in-alt"></i> Admin Login
-                </router-link>
-          </div>
-        </div>
-      </div>
-    </div></li>
-                  </ul>
+                    </ul>
                 </nav>
               </div>
             </div>
@@ -64,11 +55,9 @@
         </div>
       </header>
 
-
       <main>
         <router-view />
       </main>
-
 
       <footer>
         <div class="footer-area-top">
@@ -159,6 +148,10 @@ body {
   flex-wrap: wrap;
 }
 
+.align-items-center {
+  align-items: center;
+}
+
 .col-lg-3 { width: 25%; }
 .col-lg-4 { width: 33.333%; }
 .col-lg-6 { width: 50%; }
@@ -232,6 +225,31 @@ body {
   margin-top: 3px;
 }
 
+/* Login Button Container added for alignment */
+.login-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn-login {
+  background: #f39c12;
+  color: #002147;
+  padding: 8px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.3s;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.btn-login:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
 /* Main Menu Area */
 .main-menu-area {
   background: #002147;
@@ -260,18 +278,6 @@ body {
 
 .main-menu-area nav ul li a:hover {
   color: #f39c12;
-}
-
-.main-menu-area nav ul li.apply-btn a {
-  background: #002147;
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: 5px;
-  margin-top: 5px;
-}
-
-.main-menu-area nav ul li.apply-btn a:hover {
-  background: #f39c12;
 }
 
 /* Footer */
@@ -368,33 +374,10 @@ footer {
   .main-menu-area nav ul li a {
     padding: 10px 0;
   }
+
+  .login-container {
+    justify-content: center;
+    margin-top: 10px;
+  }
 }
-
-
-.login-bar {
-  background: #002147;
-  padding: 12px 0;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.btn-login {
-  background: #f39c12;
-  color: #002147;
-  padding: 8px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  transition: 0.3s;
-  display: inline-block;
-}
-
-.btn-login:hover {
-  background: #000000;
-  color: #ffffff;
-}
-
 </style>
