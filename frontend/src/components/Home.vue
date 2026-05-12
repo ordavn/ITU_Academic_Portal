@@ -11,8 +11,6 @@
       </div>
     </div>
 
-
-
     <div class="stats-area">
       <div class="container">
         <div class="row">
@@ -48,7 +46,6 @@
       </div>
     </div>
 
-
     <div class="container" style="margin-top: 60px;">
       <h2 style="color: #002147; text-align: center; margin-bottom: 40px;">Campus Gallery</h2>
       <div class="slideshow-container">
@@ -63,7 +60,6 @@
         <span v-for="(image, index) in galleryImages" :key="index" class="dot" :class="{ active: currentSlide === index }" @click="currentSlide = index"></span>
       </div>
     </div>
-
 
     <div class="news-area">
       <div class="container">
@@ -85,7 +81,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
       <h2 style="color: #002147; text-align: center; margin-bottom: 40px;">Academic Portal</h2>
@@ -111,7 +106,7 @@
             <div class="service-icon"><i class="fas fa-building"></i></div>
             <h3>Facilities</h3>
             <p>Explore our campus facilities, labs, classrooms, and amenities.</p>
-            <a href="#" class="service-btn-readonly">Coming Soon →</a>
+            <router-link to="/facilities" class="service-btn-readonly">View Facilities →</router-link>
           </div>
         </div>
       </div>
@@ -124,6 +119,7 @@ export default {
   name: 'Home',
   data() {
     return {
+      isAdmin: false, // <-- Added to track if user is logged in
       currentSlide: 0,
       galleryImages: [
         { url: 'https://images.unsplash.com/photo-1641160616553-a9d21a846e49?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29sbGVnZSUyMGJ1aWxkaW5nfGVufDB8fDB8fHww', caption: 'Main Campus Building' },
@@ -170,8 +166,16 @@ export default {
       ]
     }
   },
+  computed: {
+    // 👇 This checks the status and returns the correct URL
+    facilitiesRoute() {
+      return this.isAdmin ? '/admin/facilities' : '/facilities';
+    }
+  },
   mounted() {
-    this.startAutoSlide()
+    // 👇 When the page loads, check if they have the admin token
+    this.isAdmin = !!localStorage.getItem('adminToken');
+    this.startAutoSlide();
   },
   methods: {
     startAutoSlide() {
@@ -190,6 +194,7 @@ export default {
 </script>
 
 <style scoped>
+/* (Your existing styles remain exactly the same) */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -205,7 +210,6 @@ export default {
 .col-lg-4 { width: 33.333%; }
 .col-md-6 { width: 50%; }
 .col-sm-12 { width: 100%; }
-
 
 /* Stats Area */
 .stats-area {

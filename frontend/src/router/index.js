@@ -8,9 +8,15 @@ import EventCreate from '../components/EventCreate.vue'
 import EventEdit from '../components/EventEdit.vue'
 import AuthPage from '../components/AuthPage.vue' 
 
-// ---> 1. NEW IMPORTS FOR THE LIBRARY <---
+// Library imports
 import Library from '../components/Library.vue'
 import AdminLibrary from '../components/AdminLibrary.vue'
+
+// Facilities imports
+import FacilitiesList from '../components/FacilitiesList.vue'
+import AdminFacilities from '../components/AdminFacilities.vue'
+import FacilityCreate from '../components/FacilityCreate.vue'
+import FacilityEdit from '../components/FacilityEdit.vue'
 
 const routes = [
   // ==========================================
@@ -32,10 +38,14 @@ const routes = [
     component: EventDetail
   },
   {
-    // ---> 2. NEW PUBLIC LIBRARY ROUTE <---
     path: '/library',
     name: 'library',
     component: Library
+  },
+  {
+    path: '/facilities',
+    name: 'facilities-list',
+    component: FacilitiesList
   },
   {
     path: '/admin', 
@@ -50,32 +60,49 @@ const routes = [
     path: '/admin/dashboard', 
     name: 'admin-dashboard',
     component: AdminDashboard,
-    meta: { requiresAuth: true } // 🔒 Protected
+    meta: { requiresAuth: true }
   },
   {
     path: '/admin/events',
     name: 'events-list-admin',
     component: EventList,
-    meta: { requiresAuth: true } // 🔒 Protected
+    meta: { requiresAuth: true }
   },
   {
     path: '/admin/events/create', 
     name: 'event-create',
     component: EventCreate,
-    meta: { requiresAuth: true } // 🔒 Protected
+    meta: { requiresAuth: true }
   },
   {
     path: '/admin/events/:id/edit',
     name: 'event-edit',
     component: EventEdit,
-    meta: { requiresAuth: true } // 🔒 Protected
+    meta: { requiresAuth: true }
   },
   {
-    // ---> 3. NEW PROTECTED LIBRARY ROUTE <---
     path: '/admin/library',
     name: 'admin-library',
     component: AdminLibrary,
-    meta: { requiresAuth: true } // 🔒 Protected
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/admin/facilities',
+    name: 'admin-facilities',
+    component: AdminFacilities,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/admin/facilities/create',
+    name: 'facility-create',
+    component: FacilityCreate,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/admin/facilities/:id/edit',
+    name: 'facility-edit',
+    component: FacilityEdit,
+    meta: { requiresAuth: true }
   }
 ]
 

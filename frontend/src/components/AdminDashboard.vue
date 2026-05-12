@@ -55,8 +55,8 @@
             </div>
             <h3>Facilities Management</h3>
             <p>Manage campus facilities, labs, and classrooms. (Coming Soon)</p>
-            <router-link to="/admin/facilities" class="admin-btn-disabled">
-              <i class="fas fa-clock"></i> Coming Soon
+            <router-link to="/admin/facilities" class="admin-btn">
+              <i class="fas fa-arrow-right"></i> Manage Facilities
             </router-link>
           </div>
         </div>

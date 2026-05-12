@@ -4,10 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\AuthController;
-
-// ---> 1. ADD THIS IMPORT <---
-use App\Http\Controllers\BookController; 
-// (Note: If you put BookController in the Api folder, make sure this says App\Http\Controllers\Api\BookController)
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\FacilityController;
 
 
 Route::get('/user', function (Request $request) {
@@ -17,19 +15,23 @@ Route::get('/user', function (Request $request) {
 // Public Routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
-// ---> 2. ADD THE PUBLIC BOOK ROUTE HERE <---
 Route::get('/books', [BookController::class, 'index']);
-
+Route::get('/facilities', [FacilityController::class, 'index']);
+Route::get('/facilities/{id}', [FacilityController::class, 'show']);
 
 // Protected Admin Routes
 Route::middleware(['auth:sanctum', 'is_admin'])->group(function () {
     // Only admins can access these
     Route::apiResource('students', StudentController::class); // (Make sure you import StudentController at the top too if you use this!)
     
-    // ---> 3. ADD THE PROTECTED BOOK ROUTES HERE <---
+    // Book management (admin only)
     Route::post('/books', [BookController::class, 'store']);
     Route::delete('/books/{id}', [BookController::class, 'destroy']);
+    
+    // Facility management (admin only)
+    Route::post('/facilities', [FacilityController::class, 'store']);
+    Route::put('/facilities/{id}', [FacilityController::class, 'update']);
+    Route::delete('/facilities/{id}', [FacilityController::class, 'destroy']);
 });
 
 // Your event routes
