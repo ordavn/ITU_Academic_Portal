@@ -11,6 +11,7 @@ import AuthPage from '../components/AuthPage.vue'
 // Library imports
 import Library from '../components/Library.vue'
 import AdminLibrary from '../components/AdminLibrary.vue'
+import LibraryEdit from '../components/LibraryEdit.vue'
 
 // Facilities imports
 import FacilitiesList from '../components/FacilitiesList.vue'
@@ -85,6 +86,12 @@ const routes = [
     name: 'admin-library',
     component: AdminLibrary,
     meta: { requiresAuth: true }
+  },
+  {
+  path: '/admin/library/:id/edit',
+  name: 'library-edit',
+  component: LibraryEdit,
+  meta: { requiresAuth: true }
   },
   {
     path: '/admin/facilities',

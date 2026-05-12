@@ -37,6 +37,44 @@ class BookController extends Controller
         return response()->json(['message' => 'Book created successfully!', 'book' => $book]);
     }
 
+    // EVERYONE / ADMIN: Fetch a single book for the edit form
+    public function show($id)
+    {
+        $book = Book::findOrFail($id);
+        return response()->json($book, 200);
+    }
+
+    // ADMIN ONLY: Update an existing book
+    public function update(Request $request, $id)
+    {
+        $book = Book::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'title'       => 'sometimes|required|string|max:255',
+            'author'      => 'sometimes|required|string|max:255',
+            'description' => 'sometimes|required|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Handle image upload & delete the old one
+        if ($request->hasFile('image')) {
+            // Delete the old image so your server doesn't get cluttered
+            if ($book->image && Storage::disk('public')->exists($book->image)) {
+                Storage::disk('public')->delete($book->image);
+            }
+            
+            $imagePath = $request->file('image')->store('books', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
+        $book->update($validatedData);
+
+        return response()->json([
+            'message' => 'Book updated successfully!',
+            'data'    => $book
+        ], 200);
+    }
+
     // ADMIN ONLY: Delete a book
     public function destroy($id)
     {
