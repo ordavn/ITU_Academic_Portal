@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->text('description')->nullable();
-            $table->string('image_path')->nullable();
-            $table->timestamps();
-});
+            $table->text('description');
+            $table->string('image')->nullable(); // nullable just in case a book has no cover
+            $table->timestamps(); // This automatically creates created_at and updated_at
+        });
     }
 
     /**

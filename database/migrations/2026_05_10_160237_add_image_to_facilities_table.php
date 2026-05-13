@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('facilities', function (Blueprint $table) {
-            $table->string('image_path')->nullable()->after('operational_hours');
+            // Only add columns if they don't already exist
+            if (!Schema::hasColumn('facilities', 'operational_hours')) {
+                $table->string('operational_hours')->nullable();
+            }
+            if (!Schema::hasColumn('facilities', 'image_path')) {
+                $table->string('image_path')->nullable();
+            }
         });
     }
 
@@ -26,3 +32,4 @@ return new class extends Migration
         });
     }
 };
+

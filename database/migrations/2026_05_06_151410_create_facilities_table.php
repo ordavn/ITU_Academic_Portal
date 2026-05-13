@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('location');
             $table->integer('capacity')->nullable();
             $table->string('operational_hours')->nullable();
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }

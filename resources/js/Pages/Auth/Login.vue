@@ -31,12 +31,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="In-Tech University - Log in" />
-
-        <div class="mb-6 text-center">
-            <h1 class="text-3xl font-bold text-blue-900">IN-TECH UNIVERSITY</h1>
-            <p class="text-gray-600 mt-2">Student Portal</p>
-        </div>
+        <Head title="Log in" />
 
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
@@ -78,7 +73,8 @@ const submit = () => {
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
                     <span class="ms-2 text-sm text-gray-600"
-                        >Remember me</span>
+                        >Remember me</span
+                    >
                 </label>
             </div>
 
